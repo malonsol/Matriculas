@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import base64  # Importar el módulo base64
 
 # URL de la imagen localmente
 image_path = os.path.join(os.path.dirname(__file__), 'coche.jpg')
