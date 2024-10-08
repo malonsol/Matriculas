@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 # URL de la imagen en GitHub
-image_url = 'https://raw.githubusercontent.com/tu_usuario/tu_repositorio/rama/coche.jpg'  # Cambia esto por tu URL
+image_url = 'https://github.com/malonsol/Matriculas/raw/main/coche.jpg'  # Cambié ?raw=true a /raw/
 
 # Estilo CSS para la aplicación
 st.markdown(f"""
