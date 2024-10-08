@@ -1,10 +1,32 @@
 import streamlit as st
 import os
 
+# Estilo CSS para la aplicación
+st.markdown("""
+<style>
+    body {
+        background-color: #F5F5F5; /* Color de fondo */
+    }
+    h1 {
+        color: #4CAF50; /* Color del título */
+        font-family: 'Poppins', sans-serif; /* Fuente del título */
+    }
+    h2 {
+        color: #FF9800; /* Color del subtítulo */
+        font-family: 'Poppins', sans-serif; /* Fuente del subtítulo */
+    }
+    .result {
+        font-family: 'Roboto', sans-serif; /* Fuente del texto de resultados */
+        color: #212121; /* Color del texto */
+        margin: 10px 0;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
+
 # Cargar el diccionario de palabras
 @st.cache
 def load_dictionary():
-    # Obtener la ruta del archivo dic_rae.txt relativa al script
     dictionary_path = os.path.join(os.path.dirname(__file__), 'dic_rae.txt')
     with open(dictionary_path, 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
@@ -12,7 +34,7 @@ def load_dictionary():
 
 # Función para encontrar palabras que contengan las consonantes en el orden especificado
 def find_words_with_consonants(consonants, words):
-    consonants = ''.join(consonants)  # Convierto la lista en un string
+    consonants = ''.join(consonants)
     result = [word for word in words if contains_in_order(consonants, word)]
     return result
 
@@ -20,9 +42,9 @@ def find_words_with_consonants(consonants, words):
 def contains_in_order(consonants, word):
     index = 0
     for char in word:
-        if char.lower() == consonants[index].lower():  # Ignora mayúsculas y minúsculas
+        if char.lower() == consonants[index].lower():
             index += 1
-            if index == len(consonants):  # Si hemos encontrado todas las consonantes
+            if index == len(consonants):
                 return True
     return False
 
@@ -40,18 +62,16 @@ consonants_input = st.text_input('Consonantes (3):', max_chars=3)
 
 # Procesar la entrada del usuario
 if consonants_input:
-    # Filtrar la entrada para quedarnos solo con consonantes
     consonants_filtered = [c for c in consonants_input if is_consonant(c)]
 
     if len(consonants_filtered) == 3:
         words = load_dictionary()
         matching_words = find_words_with_consonants(consonants_filtered, words)
 
-        # Mostrar resultados
         if matching_words:
             st.write('Palabras encontradas:')
             for word in matching_words:
-                st.write(word)
+                st.markdown(f'<div class="result">{word}</div>', unsafe_allow_html=True)
         else:
             st.write('No se encontraron palabras que contengan esas consonantes.')
     else:
