@@ -5,7 +5,7 @@ import os
 st.markdown("""
 <style>
     body {
-        background-image: url('https://images.unsplash.com/photo-1574180045827-e4b8e0a737a1'); /* URL de la imagen */
+        background-image: url('https://unsplash.com/es/fotos/coupe-descapotable-aston-martin-negro-aparcado-junto-a-un-puente-de-hormigon-azul-x8l63IUeuwQ'); /* URL de la imagen */
         background-size: cover;
         background-position: center;
         color: white; /* Cambiar color del texto si es necesario */
