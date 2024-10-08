@@ -41,4 +41,20 @@ consonants_input = st.text_input('Consonantes (3):', max_chars=3)
 # Procesar la entrada del usuario
 if consonants_input:
     # Filtrar la entrada para quedarnos solo con consonantes
-    consonants_filtered = [c for c in
+    consonants_filtered = [c for c in consonants_input if is_consonant(c)]
+
+    if len(consonants_filtered) == 3:
+        words = load_dictionary()
+        matching_words = find_words_with_consonants(consonants_filtered, words)
+
+        # Mostrar resultados
+        if matching_words:
+            st.write('Palabras encontradas:')
+            for word in matching_words:
+                st.write(word)
+        else:
+            st.write('No se encontraron palabras que contengan esas consonantes.')
+    else:
+        st.write('Por favor, introduce exactamente 3 consonantes. Cualquier otro carácter (número, vocales, símbolos...) será omitido.')
+else:
+    st.write('Por favor, introduce exactamente 3 consonantes.')
