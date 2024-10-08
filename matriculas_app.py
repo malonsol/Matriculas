@@ -1,14 +1,14 @@
 import streamlit as st
 import os
 
-# URL de la imagen en GitHub
-image_url = 'https://github.com/malonsol/Matriculas/raw/main/coche.jpg'  # Cambié ?raw=true a /raw/
+# URL de la imagen localmente
+image_path = os.path.join(os.path.dirname(__file__), 'coche.jpg')
 
 # Estilo CSS para la aplicación
 st.markdown(f"""
 <style>
     .main {{
-        background-image: url('{image_url}'); /* URL de la imagen */
+        background-image: url('data:image/jpeg;base64,{get_image_base64(image_path)}'); /* URL de la imagen */
         background-size: cover;
         background-position: center;
         color: white; /* Cambiar color del texto si es necesario */
@@ -29,6 +29,11 @@ st.markdown(f"""
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
+
+# Función para convertir la imagen a base64
+def get_image_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
 
 # Cargar el diccionario de palabras
 @st.cache
