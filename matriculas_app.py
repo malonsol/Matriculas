@@ -77,7 +77,9 @@ if consonants_input:
         if matching_words:
             st.write('Palabras encontradas:')
             for word in matching_words:
-                st.markdown(f'<div class="result">{word}</div>', unsafe_allow_html=True)
+                # Crear un enlace a la RAE
+                link = f'https://dle.rae.es/{word}'
+                st.markdown(f'<a class="result" href="{link}" target="_blank">{word}</a>', unsafe_allow_html=True)
         else:
             st.write('No se encontraron palabras que contengan esas consonantes.')
     else:
