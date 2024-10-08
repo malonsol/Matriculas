@@ -5,7 +5,10 @@ import os
 st.markdown("""
 <style>
     body {
-        background-color: #F5F5F5; /* Color de fondo */
+        background-image: url('https://images.unsplash.com/photo-1574180045827-e4b8e0a737a1'); /* URL de la imagen */
+        background-size: cover;
+        background-position: center;
+        color: white; /* Cambiar color del texto si es necesario */
     }
     h1 {
         color: #4CAF50; /* Color del título */
